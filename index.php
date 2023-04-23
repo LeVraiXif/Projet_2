@@ -11,26 +11,12 @@ session_start();
     <link rel="stylesheet" href="assets/css/styles.css">  
 </head>
 <body>
-<header>
-        <nav>
-            <?php
-
-            if (isset($_SESSION["id"])) {
-                echo '<a href="logout.php">Déconnexion</a>';
-            } else {
-                echo "<a href='login.php'>{$lang['login']}</a>";
-            }
-            ?>
-        </nav>
-    </header>
+<?php include "assets/partials/_header.php" ?>
     <main>
         <h1><?php echo $lang['welcome']; ?></h1>
         <div id="canvas-container"></div>
     </main>
-    <footer>
-        <p>© 2023 - Mon Site Web</p>
-    </footer>
-
+<?php include "assets/partials/_footer.php" ?>
     <script src="assets/js/background.js"></script>
 </body>
 </html>

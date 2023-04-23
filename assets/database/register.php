@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'database.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -20,9 +21,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Exécutez la requête et vérifiez si l'insertion a réussi
         if ($stmt->execute()) {
-            echo "Inscription réussie !";
-        } else {
-            echo "Erreur : " . $stmt->error;
+            $new_user_id = $stmt->insert_id;
+
+            // Récupérez les informations de l'utilisateur inscrit
+            $stmt = $conn->prepare("SELECT id, email, first_name, last_name, role, banned FROM clients WHERE id = ?");
+            $stmt->bind_param("i", $new_user_id);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if ($stmt->num_rows > 0) {
+                $stmt->bind_result($id, $email_db, $first_name, $last_name, $role, $banned);
+                $stmt->fetch();
+
+                // Créez une session pour l'utilisateur
+                $_SESSION["id"] = $id;
+                $_SESSION["email"] = $email_db;
+                $_SESSION["first_name"] = $first_name;
+                $_SESSION["last_name"] = $last_name;
+                $_SESSION["role"] = $role;
+
+                // Redirigez l'utilisateur vers la page d'accueil ou la page de profil
+                header("Location: ../../index");
+                exit();
+            } else {
+                // Gestion des erreurs ou redirection en cas d'échec
+                $_SESSION["error_message"] = "Une erreur est survenue lors de la création de votre compte.";
+                header("Location: ../../register");
+                exit();
+            }
         }
 
         // Fermez la requête préparée
@@ -30,5 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+// N'oubliez pas de fermer la connexion lorsque vous avez terminé.
 $conn->close();
 ?>

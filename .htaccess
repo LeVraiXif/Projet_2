@@ -1,0 +1,28 @@
+RewriteEngine On
+RewriteBase /
+
+# Redirection pour les profils
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^profil/(\d+)$ profil.php?id=$1 [L,QSA]
+
+# Redirection pour ban-user
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^assets/php/ban-user/(\d+)$ assets/php/ban_user.php?id=$1 [L,QSA]
+
+# Redirection pour index.php
+RewriteCond %{THE_REQUEST} ^GET\ /index\.php [NC]
+RewriteRule ^index\.php$ / [L,R=301]
+
+# Ignorer le répertoire /assets/database/
+RewriteRule ^assets/database/ - [L,NC]
+
+# Supprimer l'extension .php des URL
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Rediriger les anciennes URL .php
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.php\ HTTP/
+RewriteRule ^(.*)\.php$ /$1 [R=301,L]

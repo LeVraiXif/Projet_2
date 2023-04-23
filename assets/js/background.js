@@ -29,7 +29,7 @@ class Point {
 }
 
 const points = [];
-const numPoints = 50;
+const numPoints = 150;
 const maxDistance = 100;
 
 for (let i = 0; i < numPoints; i++) {
