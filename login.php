@@ -18,7 +18,7 @@
             <br>
             <input type="submit" value="Se connecter">
 
-            <p>Pas de compte ? <a href="register.php">Inscriptions</a> </p>
+            <p>Pas de compte ? <a href="register">Inscriptions</a> </p>
         </form>
     </main>
 </body>

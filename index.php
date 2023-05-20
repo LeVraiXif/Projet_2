@@ -1,4 +1,8 @@
 <?php
+//$variable = "Hello, world!";
+//var_dump($variable);
+?>
+<?php
 include "assets/languages/lang.php";
 session_start();
 ?>

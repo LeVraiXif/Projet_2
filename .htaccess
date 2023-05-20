@@ -25,4 +25,5 @@ RewriteRule ^(.*)$ $1.php [L]
 
 # Rediriger les anciennes URL .php
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.php\ HTTP/
-RewriteRule ^(.*)\.php$ /$1 [R=301,L]
+RewriteRule ^(.*)\.php$  https://%{HTTP_HOST}%/$1 [R=301,L]
+

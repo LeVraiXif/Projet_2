@@ -23,7 +23,7 @@
         <br>
         <input type="submit" value="S'inscrire">
 
-        <p>Déjà un compte ? <a href="login.php">Connexion</a> </p>
+        <p>Déjà un compte ? <a href="login">Conexion</a> </p>
     </form>
 </body>
 </html>

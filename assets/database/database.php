@@ -1,8 +1,9 @@
 <?php
 // Paramètres de connexion à la base de données
-$servername = "mysql";
+
+$servername = "localhost";
 $username = "root";
-$password = "password";
+$password = "drowssap";
 $dbname = "databaseWeb";
 
 // Créer une connexion
